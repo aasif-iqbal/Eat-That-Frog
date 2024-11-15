@@ -106,3 +106,11 @@ SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders
 FROM Orders
 LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
 GROUP BY ShipperName;
+```
+## Query Result
+
+| ShipperName       | NumberOfOrders |
+|-------------------|----------------|
+| Federal Shipping  | 68             |
+| Speedy Express    | 54             |
+| United Package    | 74             |

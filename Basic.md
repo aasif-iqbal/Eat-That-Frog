@@ -245,13 +245,14 @@ function countEachletter(story){
     let result = {}
     
     for(x of story){
-        if(result[x]){
-            result[x] ++;
-        }else{
-            result[x] = 1;
+        if(x !== ' '){
+            if(result[x]){
+                result[x] ++;
+            }else{
+                result[x] = 1;
+            }
         }
-    }
-    
+    }    
     return result;
 }
 console.log(countEachletter(story))

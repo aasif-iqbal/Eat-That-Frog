@@ -235,3 +235,28 @@ function anagram(str1, str2){
 
 console.log(anagram('Debit Card','Bad Credit'));
 ```
+
+
+# Count Each letter in paragraph
+```js
+const story = 'hello world how are you';
+
+function countEachletter(story){
+    let result = {}
+    
+    for(x of story){
+        if(result[x]){
+            result[x] ++;
+        }else{
+            result[x] = 1;
+        }
+    }
+    
+    return result;
+}
+console.log(countEachletter(story))
+```
+output:
+```json
+{ h: 2, e: 2, l: 3, o: 4, ' ': 4, w: 2, r: 2, d: 1, a: 1, y: 1, u: 1 }
+```

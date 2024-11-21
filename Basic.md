@@ -4,8 +4,7 @@ Open your fav code editor and start
 # Reverse given array
 ```js
 const arr = [1,2,3,4,5,6]
-```
-```js
+
 function rev(arr){
     let new_arr = []
     for(let i = arr.length-1; i >= 0; i--){
@@ -15,6 +14,9 @@ function rev(arr){
 }
 
 console.log('Result', rev(arr));
+```
+```js
+[6, 5, 4, 3, 2, 1]
 ```
 
 # Remove Duplicate from an array
@@ -83,15 +85,15 @@ function findMissing(arr){
 }
 console.log(findMissing(arr));
 ```
+output:
+```js
+7
+```
 # Find Intersection of two arrays
 
 ```js
-// Online Javascript Editor for free
-// Write, Edit and Run your Javascript code using JS Online Compiler
-
 const arr1 = [1,3,4,5,6]
 const arr2 = [9,8,5,6]
-// output: [5,6]
 
 //Loop through each array and compare elem of arr1 with arr2
 // if match push it to new array and return new array
@@ -110,19 +112,22 @@ function intersectionArr(arr1, arr2){
 }
 console.log(intersectionArr(arr1, arr2))
 ```
-# Count each elem in array
+output:
+```js
+[5,6]
+```
+# Count each elem in array (0's,1's and 2's).
 ```js
 let arr = [0,2,1,1,1,1,1,0,0,0,2,2,2,2,1,1,1]
-//count number of 0's,1's and 2's
-
-//loop each elem, 
-//create counter for each elem
 
 function countElem(arr){
     let counter_zero = 0;
     let counter_one = 0;
     let counter_two = 0;
     
+    //loop each elem, 
+    //create counter for each elem
+
     for(let i=0; i < arr.length; i++){
                     
         if(arr[i] === 0){
@@ -144,7 +149,10 @@ function countElem(arr){
 
 console.log(countElem(arr))
 ```
-
+output:
+```js
+{ zero: 4, one: 8, two: 5 }
+```
 # Count Each letters in array of strings
 ```js
 const str = ['apple', 'banana', 'kiwi', 'jackfruit', 'mango'];
@@ -160,10 +168,11 @@ function countElem(str){
     }
     return map
 }
-
 console.log(countElem(str))
-
-Output : Map(5) {
+```
+Output :
+```js
+Map(5) {
   'apple' => 5,
   'banana' => 6,
   'kiwi' => 4,
@@ -197,7 +206,9 @@ function mergeTwoArr(users1, users2){
     return result;
 }
 console.log(mergeTwoArr(users1, users2))
+```
 Output:
+```js
 [
   { userId: 1, name: 'Alice', email: 'alice@example.com' },
   { userId: 2, name: 'Bob', email: 'bob@example.com' },
@@ -235,7 +246,10 @@ function anagram(str1, str2){
 
 console.log(anagram('Debit Card','Bad Credit'));
 ```
-
+output
+```js
+true
+```
 
 # Count Each letter in paragraph
 ```js
@@ -258,6 +272,36 @@ function countEachletter(story){
 console.log(countEachletter(story))
 ```
 output:
-```json
-{ h: 2, e: 2, l: 3, o: 4, ' ': 4, w: 2, r: 2, d: 1, a: 1, y: 1, u: 1 }
+```js
+{ h: 2, e: 2, l: 3, o: 4, w: 2, r: 2, d: 1, a: 1, y: 1, u: 1 }
+```
+
+# Find 2nd most frequent elem in given string.
+
+```js
+let str = 'addaddh';
+
+function makeCount(str){
+    // create map and count each char
+    let iMap = new Map();
+    
+    for(let elem of str){
+        iMap.set(elem, (iMap.get(elem) || 0) + 1)
+    }
+    
+    //convert map into array 
+    const arry = [...iMap.entries()]; // or const arry = [...iMap]
+    
+    // sort arry
+    const sortedArry = arry.sort((a, b)=> b[1] - a[1]);
+    
+    // return second index
+    return sortedArry[1][0]
+}
+
+console.log(makeCount(str)) 
+```
+output:
+```js
+a
 ```

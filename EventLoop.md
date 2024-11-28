@@ -12,7 +12,7 @@ In blocking code, operations are executed sequentially. Each operation waits for
 const fs = require('fs');
 
 // Blocking code
-const data = fs.readFileSync('/path/to/file.txt');
+const data = fs.readFileSync('/path/to/file.txt'); //This line of code will block here & wait for fs.readFileSync to read file.
 console.log(data.toString());
 console.log('This line will wait until file is read.');
 ```

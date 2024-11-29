@@ -305,3 +305,23 @@ output:
 ```js
 a
 ```
+
+# Remove given Key from Object
+```js
+function removeKeys(input, keysToRemove) {
+  keysToRemove.forEach(key => {
+    delete input[key];
+  });
+  return input;
+}
+
+const input = { a: 1, b: 2, c: 3 };
+const keysToRemove = ['b', 'c'];
+
+const result = removeKeys(input, keysToRemove);
+console.log(result); 
+```
+Output: 
+```js
+{ a: 1 }
+```

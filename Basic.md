@@ -342,3 +342,43 @@ const removeKeys = (obj, keys) => {
 const result = removeKeys(input, keysToRemove);
 console.log(result); // { a: 1 }
 ```
+
+
+## Tools
+#### Convert new Map() into array
+```js
+const map = new Map([
+    ['key1', 'value1'],
+    ['key2', 'value2'],
+]);
+
+const array = Array.from(map);
+console.log(array);
+// Output: [['key1', 'value1'], ['key2', 'value2']]
+```
+***Using spread Operator***
+```js
+const array = [...map];
+console.log(array);
+// Output: [['key1', 'value1'], ['key2', 'value2']]
+```
+***Custom Transformation***
+```js
+const customArray = Array.from(map, ([key, value]) => ({ key, value }));
+console.log(customArray);
+// Output: [{ key: 'key1', value: 'value1' }, { key: 'key2', value: 'value2' }]
+```
+#### Convert Object() into array
+```js
+const obj = { key1: 'value1', key2: 'value2' };
+
+const array = Object.entries(obj);
+console.log(array);
+// Output: [['key1', 'value1'], ['key2', 'value2']]
+```
+***Custom Transformation***
+```js
+const customArray = Object.entries(obj).map(([key, value]) => ({ key, value }));
+console.log(customArray);
+// Output: [{ key: 'key1', value: 'value1' }, { key: 'key2', value: 'value2' }]
+```

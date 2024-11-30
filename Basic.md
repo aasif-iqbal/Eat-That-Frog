@@ -325,3 +325,20 @@ Output:
 ```js
 { a: 1 }
 ```
+### Using Reduce method
+```js
+const input = { a: 1, b: 2, c: 3 };
+const keysToRemove = ['b', 'c'];
+
+const removeKeys = (obj, keys) => {
+  return Object.keys(obj).reduce((acc, key) => {
+    if (!keys.includes(key)) {
+      acc[key] = obj[key]; // Add the key-value pair if the key is not in keysToRemove
+    }
+    return acc;
+  }, {}); // Start with an empty object as the accumulator
+};
+
+const result = removeKeys(input, keysToRemove);
+console.log(result); // { a: 1 }
+```

@@ -342,7 +342,29 @@ const removeKeys = (obj, keys) => {
 const result = removeKeys(input, keysToRemove);
 console.log(result); // { a: 1 }
 ```
+# Find All Duplicates in an Array
+```js
+function findDuplicates(nums) {
+    const count = {};
+    const result = [];
 
+    for (const num of nums) {
+        count[num] = (count[num] || 0) + 1;
+    }
+
+    for (const [num, freq] of Object.entries(count)) {
+        if (freq > 1) {
+            result.push(Number(num));
+        }
+    }
+
+    return result;
+}
+
+const nums = [4, 3, 2, 7, 8, 2, 3, 1];
+console.log(findDuplicates(nums)); 
+// Output: [2, 3]
+```
 
 ## Tools
 #### Convert new Map() into array

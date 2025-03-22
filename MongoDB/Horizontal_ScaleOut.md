@@ -43,4 +43,3 @@
 - **Load Balancers:** AWS Elastic Load Balancer (ELB), HAProxy.
 
 Would you like to dive deeper into any specific aspect, such as implementing horizontal scaling with AWS or handling database scaling?
-

@@ -3253,4 +3253,31 @@ Worst Case (Already Sorted, Poor Pivot Choice)|	O(n²)
 ✅ Efficient for large datasets
 ✅ No extra space required (in-place sorting possible)
 
---------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+
+73. Custom Split() function for String.
+
+function customSplit(str, separator) {
+  let result = [];
+  let current = '';
+ 
+  for (let i = 0; i < str.length; i++) {
+    
+    if (str[i] === separator) {
+      result.push(current);
+      current = ''; // reset current word
+    } else {
+      current += str[i];
+    }
+  }
+
+  // Push the last part
+  result.push(current);
+
+  return result;
+}
+
+// Example usage:
+console.log(customSplit('aasif,iqbal,developer', ',')); 
+// Output: ['aasif', 'iqbal', 'developer']
+----------------------------------------------------------------------------------------

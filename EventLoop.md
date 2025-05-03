@@ -161,10 +161,10 @@ fs.readFile('/path/to/file.txt', (err, data) => {
 ```javascript
 const { Worker } = require('worker_threads');
 
-const worker = new Worker(`
+const worker = new Worker(
   const { parentPort } = require('worker_threads');
   parentPort.postMessage('Hello from the worker thread!');
-`, { eval: true });
+, { eval: true });
 
 worker.on('message', (message) => {
   console.log(message);

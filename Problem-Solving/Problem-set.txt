@@ -3281,3 +3281,40 @@ function customSplit(str, separator) {
 console.log(customSplit('aasif,iqbal,developer', ',')); 
 // Output: ['aasif', 'iqbal', 'developer']
 ----------------------------------------------------------------------------------------
+
+
+75. Check two strings - isAnagram.
+
+function isAnagram(str1, str2){
+  let imap1 = new Map();
+  let imap2 = new Map();
+  
+  str1 = str1.toLowerCase().replace(/\s/g, '');
+  str2 = str2.toLowerCase().replace(/\s/g, '');
+  
+  if (str1.length !== str2.length) return false;
+  
+  for (let chr of str1) {
+    imap1.set(chr, (imap1.get(chr) || 0) + 1);
+  }
+  
+  for (let chr of str2) {
+    imap2.set(chr, (imap2.get(chr) || 0) + 1);
+  }
+  
+  if (imap1.size !== imap2.size) return false;
+  
+  for (let [key, value] of imap1) {
+    if (!imap2.has(key) || imap2.get(key) !== value) {
+      return false;
+    }
+  }
+  
+  return true;
+}
+
+let str1 = 'Old West action';
+let str2 = 'Clint Eastwood';
+
+const result = isAnagram(str1, str2);
+console.log(result);  // ✅ true

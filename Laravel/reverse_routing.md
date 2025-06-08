@@ -39,3 +39,88 @@ $url = route('posts.show', ['id' => 42]);
 * In tests and middleware too
 
 ---
+
+
+### Example: 
+
+Here’s a complete working example of **reverse routing in Laravel**, including routes, controller, view, and usage in redirect.
+
+---
+
+## ✅ Step 1: Define a Named Route
+
+In `routes/web.php`:
+
+```php
+use App\Http\Controllers\PostController;
+
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+```
+
+---
+
+## ✅ Step 2: Create Controller
+
+Generate the controller:
+
+```bash
+php artisan make:controller PostController
+```
+
+In `app/Http/Controllers/PostController.php`:
+
+```php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PostController extends Controller
+{
+    public function show($id)
+    {
+        return "Showing post with ID: " . $id;
+    }
+}
+```
+
+---
+
+## ✅ Step 3: Use Reverse Routing in Blade View
+
+In `resources/views/posts/index.blade.php`:
+
+```blade
+@php
+    $postId = 42;
+@endphp
+
+<a href="{{ route('posts.show', ['id' => $postId]) }}">View Post</a>
+```
+
+When rendered, this becomes:
+
+```html
+<a href="/posts/42">View Post</a>
+```
+
+---
+
+## ✅ Step 4: Use Reverse Routing in Controller Redirect
+
+You can also use reverse routing to redirect:
+
+```php
+return redirect()->route('posts.show', ['id' => 42]);
+```
+
+---
+
+## 🧪 Optional: See Named Routes
+
+Run this command to verify the route name:
+
+```bash
+php artisan route:list
+```
+
+Look for the route with `Name = posts.show`

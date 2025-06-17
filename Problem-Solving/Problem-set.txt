@@ -376,7 +376,7 @@ console.log(uniqueObj);
 
 13. Find The 2nd largest number in an array.
 
-let arr = [1,2,4,1,4,6,6,6,3,9, 9] // return 6
+let arr = [1,2,4,1,4,6,6,6,3,9,9] // return 6
 
 function getSecondHighestNumber(arr){
   
@@ -395,6 +395,23 @@ function getSecondHighestNumber(arr){
 let value = getSecondHighestNumber(arr);
 console.log(value)
 
+## Without removing duplicate
+function secondHighest(arr) {
+  let first = -Infinity, second = -Infinity;
+
+  for (let num of arr) {
+    if (num > first) {
+      second = first;
+      first = num;
+    } else if (num > second && num !== first) {
+      second = num;
+    }
+  }
+
+  return second === -Infinity ? null : second;
+}
+
+console.log(secondHighest([10, 5, 8, 10, 3])); // Output: 8
 ---------------------------------------------------------------------------------
 
 14. Two Sum 

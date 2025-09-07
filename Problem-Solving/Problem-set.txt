@@ -396,6 +396,7 @@ let value = getSecondHighestNumber(arr);
 console.log(value)
 
 ## Without removing duplicate
+
 function secondHighest(arr) {
   let first = -Infinity, second = -Infinity;
 
@@ -412,6 +413,40 @@ function secondHighest(arr) {
 }
 
 console.log(secondHighest([10, 5, 8, 10, 3])); // Output: 8
+
+## Get 3rd highest num 
+
+function thirdHighest(arr) {
+  if (arr.length < 3) return null; // Handle arrays with fewer than 3 elements
+
+  let first = -Infinity;
+  // Largest
+  let second = -Infinity;
+  // Second largest
+  let third = -Infinity;
+  // Third largest
+
+  for (let num of arr) {
+    if (num > first) {
+      third = second;
+      second = first;
+      first = num;
+    } else if (num > second && num < first) {
+      third = second;
+      second = num;
+    } else if (num > third && num < second) {
+      third = num;
+    }
+  }
+
+  return third === -Infinity ? null : third; // Return null if no third highest exists
+}
+
+console.log(thirdHighest([5, 3, 2, 8, 9,  // 1, 1])); // Output: 5
+console.log(thirdHighest([1, 1, 1, 1])) // Output: null
+console.log(thirdHighest([5,  // [5])) Output: null)); // Output: null
+console.log(thirdHighest([5, 5, 4, 3, 3, 2])); // Output: 2
+
 ---------------------------------------------------------------------------------
 
 14. Two Sum 
@@ -3367,3 +3402,94 @@ let str2 = 'racecar  carrace';
 const result = isAnagram(str1, str2);
 console.log(result)
 
+76. Maximum product of three numbers in an array.
+
+The maximum product of three numbers can come from either:
+- The three largest numbers in the array
+- The two smallest (most negative) numbers × the largest number
+Because multiplying two negatives gives a positive.
+
+Input: [1, 10, -5, 1, -100]
+Output: 5000
+// (-100 * -5 * 10)
+
+function maxProductOfThree(nums) {
+  nums.sort((a, b) => a - b); // sort ascending
+  
+  const n = nums.length;
+  
+  const option1 = nums[n - 1] * nums[n - 2] * nums[n - 3]; // top 3 max
+  const option2 = nums[0] * nums[1] * nums[n - 1];         // 2 smallest * largest
+  
+  return Math.max(option1, option2);
+}
+
+// Example
+console.log(maxProductOfThree([1, 10, -5, 1, -100])); // 5000
+console.log(maxProductOfThree([1, 2, 3, 4]));         // 24
+
+Alternately:Optimized (No Sorting, O(n))
+
+Time complexity:O(n log n)
+
+function maxProductOfThree(nums) {
+  if (nums.length < 3) {
+    throw new Error("Array must contain at least 3 numbers");
+  }
+  if (nums.length === 3) {
+    return nums[0] * nums[1] * nums[2];
+  }
+
+  let max1 = -Infinity, max2 = -Infinity, max3 = -Infinity;
+  let min1 = Infinity, min2 = Infinity;
+  
+  for (let num of nums) {
+    // Track max values
+    if (num > max1) {
+      [max1, max2, max3] = [num, max1, max2];
+    } else if (num > max2) {
+      [max2, max3] = [num, max2];
+    } else if (num > max3) {
+      max3 = num;
+    }
+    
+    // Track min values
+    if (num < min1) {
+      [min1, min2] = [num, min1];
+    } else if (num < min2) {
+      min2 = num;
+    }
+  }
+  
+  return Math.max(max1 * max2 * max3, min1 * min2 * max1);
+}
+
+// Example
+console.log(maxProductOfThree([1, 10, -5, 1, -100])); // 5000
+console.log(maxProductOfThree([1, 2, 3, 4]));         // 24
+
+======================================================================
+
+77. Return First Non-Repeating Char from String.
+
+function nonRepeatChar(str){
+  let imap  = new Map();
+  
+  for(let char of str){
+    if(!imap.has(char)){
+      imap.set(char, (imap.get(char)||0)+1);
+    }else{
+      imap.set(char, (imap.get(char))+1);
+    }
+  }
+
+  for(let [key,value] of imap){
+    if(value == 1){
+      return key;
+    }
+  }  
+}
+
+let str = 'swiss';
+let result = nonRepeatChar(str);
+console.log(result); // w  // 0(n)

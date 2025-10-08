@@ -3565,3 +3565,77 @@ function letterCount(str){
 }
 
 console.log(letterCount('Today, is the greatest day ever!')) // greatest
+
+
+81. write a program to get index of fibonachi series.
+
+function getFibonacciIndex(n) {
+  if (n < 0) return -1; // Fibonacci series is non-negative
+
+  let a = 0, b = 1, index = 1;
+
+  // Special cases
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+
+  while (b < n) {
+    const next = a + b;
+    a = b;
+    b = next;
+    index++;
+  }
+
+  return b === n ? index : -1; // return -1 if not a Fibonacci number
+}
+
+// 🧠 Example usage:
+const num = 21;
+const index = getFibonacciIndex(num);
+
+if (index !== -1) {
+  console.log(`${num} is at index ${index} in Fibonacci series.`);
+} else {
+  console.log(`${num} is not a Fibonacci number.`);
+}
+
+
+82. Write 
+
+function memoize(func) {
+  const cache = {}; // The cache to store results
+
+  return function(...args) {
+    // Create a unique key for the arguments
+    const key = JSON.stringify(args); 
+
+    // If the result is already in the cache, return it
+    if (cache[key]) {
+      console.log(`Fetching from cache for key: ${key}`);
+      return cache[key];
+    }
+
+    // Otherwise, execute the original function and store the result
+    console.log(`Calculating and storing for key: ${key}`);
+    const result = func.apply(this, args);
+    cache[key] = result;
+    return result;
+  };
+}
+
+apply() provides a flexible way to invoke functions, allowing explicit control over the this context and efficient handling of arguments when they are available in an array-like structure.
+
+// An expensive function to be memoized (e.g., Fibonacci sequence)
+function fibonacci(n) {
+  if (n <= 1) {
+    return n;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Create a memoized version of the fibonacci function
+const memoizedFibonacci = memoize(fibonacci);
+
+console.log(memoizedFibonacci(10)); // Calculates and stores
+console.log(memoizedFibonacci(10)); // Fetches from cache
+console.log(memoizedFibonacci(5));  // Calculates and stores
+console.log(memoizedFibonacci(5));  // Fetches from cache

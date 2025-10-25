@@ -3598,6 +3598,33 @@ if (index !== -1) {
   console.log(`${num} is not a Fibonacci number.`);
 }
 
+OR, Easy way
+
+// return fibonaci series with index and memoize it
+// 0,1,1,2,3,5,8,13,21 -> 21 is at 8 index
+
+function fibonaci(n){
+  
+  if(n < 1) return -1;
+  if(n == 0) return 0;
+  if(n == 1) return 1;
+  
+  let n1 = 0, n2 = 1, next = 0;
+  let index = 1;
+  
+  while(true){
+    next = n1 + n2;
+    index++;
+    if(next == n) return index;
+    if(next > n) return -1;
+    n1 = n2;
+    n2 = next;
+  }
+  
+  return index;
+}
+let n = 21; // num of terms
+console.log(fibonaci(21))  // 8
 
 82. Write 
 
@@ -3639,3 +3666,74 @@ console.log(memoizedFibonacci(10)); // Calculates and stores
 console.log(memoizedFibonacci(10)); // Fetches from cache
 console.log(memoizedFibonacci(5));  // Calculates and stores
 console.log(memoizedFibonacci(5));  // Fetches from cache
+
+
+83. Display all fibonacci number using Recurtion
+function fibonacciRecursion(n){
+  
+  if(n < 0) return -1;
+  if(n == 0) return 0;
+  if(n == 1) return 1;
+  
+  return fibonacciRecursion(n-1) + fibonacciRecursion( n-2);
+}
+
+function displayFibonacci(n){
+  
+  let result = [];
+  for(let i = 0; i < n; i++){
+    result.push(fibonacciRecursion(i));
+  }
+  
+  return result;
+}
+
+console.log(displayFibonacci(5));
+
+84. Array Rotation With O(1) space and O(n) time.
+That means:
+No extra array (only use a few variables)
+Process elements in place.
+
+let arr = [1,2,3,4,5,6,7];
+
+function reverse(arr, start, end){
+  
+  while(start<end){
+    [arr[start], arr[end]] = [arr[end], arr[start]];
+    start++;
+    end--;
+  }
+  return arr;
+}
+
+//  Rotate Right.
+// Original: [1, 2, 3, 4, 5, 6, 7]
+// Step 1: Reverse all → [7, 6, 5, 4, 3, 2, 1]
+// Step 2: Reverse first 3 → [5, 6, 7, 4, 3, 2, 1]
+// Step 3: Reverse last 4 → [5, 6, 7, 1, 2, 3, 4]
+// ✅ Result = [5, 6, 7, 1, 2, 3, 4]
+
+// For Left Rotation.
+// Just change the order:
+// Reverse first k
+// Reverse last n - k
+// Reverse entire array
+
+//k-> num of rotation.
+
+function rotation(arr, k){
+  
+  let n = arr.length;
+  k = k % n; // handle if k > n
+  
+  reverse(arr, 0, n-1);
+  
+  reverse(arr, 0, k-1);
+  
+  reverse(arr, k, n-1);
+  
+  return arr;
+}
+
+console.log(rotation(arr,3));

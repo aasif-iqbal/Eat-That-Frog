@@ -95,7 +95,7 @@ Here’s a simplified flow of how data moves through Kafka:
    - Process IoT sensor data for immediate insights (e.g., monitoring smart devices).
 5. **Message Queues**:
    - Replace traditional queues like RabbitMQ for high-throughput messaging.
-
+`
 ---
 
 ### **Getting Started with Kafka**
